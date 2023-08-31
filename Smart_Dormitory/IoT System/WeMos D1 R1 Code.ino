@@ -15,7 +15,7 @@ void setup(){
     servo.attach(servoPin);
 }
 void loop(){
-    if (Firebase.getInt("On")==1) servo.write(0);
-    else servo.write(20);
+    if (Firebase.getInt("On")==1) servo.write(25);
+    else servo.write(85);
     delay(1000);
 }
