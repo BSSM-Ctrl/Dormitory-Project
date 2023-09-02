@@ -1,4 +1,4 @@
-### 기숙사문 제어 프로젝트
+## 기숙사문 제어 프로젝트
 
 ## Member
 
@@ -8,13 +8,13 @@
 | 김동욱 | IoT, DB, Circuit Diagram |
 <br>
 
-## Language
+## Languages && Tools
 
-| Role | Language |
-| --- | --- |
-| Front - End | HTML, CSS, JS |
-| Back - ENd | Flask |
-| Database | Firebase |
-| IoT | WeMos D1 R1 |
-| Circuit Diagram | Fritzing |
+| Role | Language | Tool |
+| --- | --- | --- |
+| Front - End | HTML, CSS, JS | VSCode |
+| Back - ENd | Flask | VSCode |
+| Database | Firebase | Firebase |
+| IoT | WeMos D1 R1 | Arduino IDE |
+| Circuit Diagram | Fritzing | Fritzing |
 <br>
