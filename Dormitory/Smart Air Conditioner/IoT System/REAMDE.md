@@ -1,4 +1,4 @@
-## IoT
+바## IoT
 
 ### 재료
 WeMos D1 R1 <br>
@@ -15,12 +15,22 @@ WeMos D1 R1 <br>
 
 ### DB
 #### 웹 -> Firebase정보
-Mode = 냉방,난방,제습중에 선택 <br>
-MaxTemperature = 최고온도 <br>
-MinTemperature = 최저온도 <br>
-MaxHumidity = 최고습도 <br>
-MinHumidity = 최저습도 <br>
+Mode = 냉방,난방,제습중에 선택 (영어 -> Int) <br>
+0은 냉방, 1은 난방, 2는 제습임 <br>
+MaxTemperature = 최고온도 Float <br> 
+웹에서 냉방 또는 난방을 선택했을때에 입력받는값 <br>
+MinTemperature = 최저온도 Float <br>
+웹에서 냉방 또는 난방을 선택했을때에 입력받는값 <br>
+MaxHumidity = 최고습도 Float <br>
+웹에서 제습을 선택했을때에 입력받는값 <br>
+MinHumidity = 최저습도 Float <br>
+웹에서 제습을 선택했을때에 입력받는값 <br>
 
 #### Arduino -> Firebase 
-Temperature = 지금 온도 <br>
-Humidity = 지금 습도 <br>
+Temperature = 지금 온도 Float <br>
+Humidity = 지금 습도 Float <br>
+
+내가 온도,습도입력방식은  <br>
+![image](https://github.com/BSSM-Ctrl/Project/assets/128461452/679afe6f-0b07-4181-8173-fc0b766207c4)
+이런 UI를 원한다. <br>
+그런데 달라진다면 지금온도,습도는 넣고 바형식(?) 스크롤형식(?) 같은거로 하고싶음 이건 나중에 사진찾음 <br>
