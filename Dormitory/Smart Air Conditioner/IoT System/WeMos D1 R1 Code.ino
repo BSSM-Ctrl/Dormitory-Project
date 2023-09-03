@@ -1,5 +1,6 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
+// #include <ArduinoJson.h>
 #include <Servo.h>
 #include <DHT.h>
 
@@ -21,161 +22,165 @@ float Temperature, Humidity;
 
 void setup()
 {
-  Serial.begin(115200);
-  DHT.begin();
-  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-  Firebase.setInt("Mode", 0);
-  Firebase.setInt("MaxTemperature", 0);
-  Firebase.setInt("MinTemperature", 0);
-  Firebase.setInt("MaxHumidity", 0);
-  Firebase.setInt("MinHumidity", 0);
-  On_servo.attach(servoPin1);
-  Mode_servo.attach(servoPin2);
+    Serial.begin(115200);
+    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+    Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+    Firebase.setInt("Mode", 0);
+    Firebase.setFloat("MaxTemperature", 0);
+    Firebase.setFloat("MinTemperature", 0);
+    Firebase.setFloat("MaxHumidity", 0);
+    Firebase.setFloat("MinHumidity", 0);
+    Firebase.setFloat("Temperature", 0);
+    Firebase.setFloat("Humidity", 0);
+    On_servo.attach(servoPin1);
+    Mode_servo.attach(servoPin2);
 }
 
 void loop()
 {
 
-  float Temperature = DHT.readTemperature();
-  float Humidity = DHT.readHumidity();
-  // 냉방모드
-  if (Firebase.getInt("Mode") == 0)
-  {
-    while (Mode % 3 != Firebase.getInt("Mode"))
+    float Temperature = DHT.readTemperature();
+    float Humidity = DHT.readHumidity();
+    Firebase.setFloat("Temperature", Temperature);
+    Firebase.setFloat("Humidity", Humidity);
+
+    // 냉방모드
+    if (Firebase.getInt("Mode") == 0)
     {
-      Mode++;
-      for (int i = 85; i > 25; i--)
-      {
-        Mode_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        Mode_servo.write(i);
-        delay(10);
-      }
+        while (Mode % 3 != Firebase.getInt("Mode"))
+        {
+            Mode++;
+            for (int i = 85; i > 25; i--)
+            {
+                Mode_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                Mode_servo.write(i);
+                delay(10);
+            }
+        }
+        if ((On % 2 == 1) && (Temperature < Firebase.getFloat("MinTemperature") || Temperature > Firebase.getFloat("MaxTemperature")))
+        {
+            for (int i = 85; i > 25; i--)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            On++;
+        }
+        else if ((On % 2 == 0) && (Temperature >= Firebase.getFloat("MinTemperature") && Temperature <= Firebase.getFloat("MaxTemperature")))
+        {
+            for (int i = 85; i > 25; i--)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            On++;
+        }
     }
-    if ((On % 2 == 1) && (Temperature < Firebase.getInt("MinTemperature") || Temperature > Firebase.getInt("MaxTemperature")))
+    // 난방모드
+    else if (Firebase.getInt("Mode") == 1)
     {
-      for (int i = 85; i > 25; i--)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      On++;
+        while (Mode % 3 != Firebase.getInt("Mode"))
+        {
+            Mode++;
+            for (int i = 85; i > 25; i--)
+            {
+                Mode_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                Mode_servo.write(i);
+                delay(10);
+            }
+        }
+        if ((On % 2 == 1) && (Temperature < Firebase.getFloat("MinTemperature") || Temperature > Firebase.getFloat("MaxTemperature")))
+        {
+            for (int i = 85; i > 25; i--)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            On++;
+        }
+        else if ((On % 2 == 0) && (Temperature >= Firebase.getFloat("MinTemperature") && Temperature <= Firebase.getFloat("MaxTemperature")))
+        {
+            for (int i = 85; i > 25; i--)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            On++;
+        }
     }
-    else if ((On % 2 == 0) && (Temperature >= Firebase.getInt("MinTemperature") && Temperature <= Firebase.getInt("MaxTemperature")))
+    // 제습모드
+    else if (Firebase.getInt("Mode") == 2)
     {
-      for (int i = 85; i > 25; i--)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      On++;
+        while (Mode % 3 != Firebase.getInt("Mode"))
+        {
+            Mode++;
+            for (int i = 85; i > 25; i--)
+            {
+                Mode_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                Mode_servo.write(i);
+                delay(10);
+            }
+        }
+        if ((On % 2 == 1) && (Humidity < Firebase.getFloat("MinHumidity") || Humidity > Firebase.getFloat("MaxHumidity")))
+        {
+            for (int i = 85; i > 25; i--)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            On++;
+        }
+        else if ((On % 2 == 0) && (Humidity >= Firebase.getFloat("MinHumidity") && Humidity <= Firebase.getFloat("MaxHumidity")))
+        {
+            for (int i = 85; i > 25; i--)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            for (int i = 25; i < 85; i++)
+            {
+                On_servo.write(i);
+                delay(10);
+            }
+            On++;
+        }
     }
-  }
-  // 난방모드
-  else if (Firebase.getInt("Mode") == 1)
-  {
-    while (Mode % 3 != Firebase.getInt("Mode"))
-    {
-      Mode++;
-      for (int i = 85; i > 25; i--)
-      {
-        Mode_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        Mode_servo.write(i);
-        delay(10);
-      }
-    }
-    if ((On % 2 == 1) && (Temperature < Firebase.getInt("MinTemperature") || Temperature > Firebase.getInt("MaxTemperature")))
-    {
-      for (int i = 85; i > 25; i--)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      On++;
-    }
-    else if ((On % 2 == 0) && (Temperature >= Firebase.getInt("MinTemperature") && Temperature <= Firebase.getInt("MaxTemperature")))
-    {
-      for (int i = 85; i > 25; i--)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      On++;
-    }
-  }
-  // 제습모드
-  else if (Firebase.getInt("Mode") == 2)
-  {
-    while (Mode % 3 != Firebase.getInt("Mode"))
-    {
-      Mode++;
-      for (int i = 85; i > 25; i--)
-      {
-        Mode_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        Mode_servo.write(i);
-        delay(10);
-      }
-    }
-    if ((On % 2 == 1) && (Humidity < Firebase.getInt("MinHumidity") || Humidity > Firebase.getInt("MaxHumidity")))
-    {
-      for (int i = 85; i > 25; i--)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      On++;
-    }
-    else if ((On % 2 == 0) && (Humidity >= Firebase.getInt("MinHumidity") && Humidity <= Firebase.getInt("MaxHumidity")))
-    {
-      for (int i = 85; i > 25; i--)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      for (int i = 25; i < 85; i++)
-      {
-        On_servo.write(i);
-        delay(10);
-      }
-      On++;
-    }
-  }
-  delay(500);
+    delay(500);
 }
