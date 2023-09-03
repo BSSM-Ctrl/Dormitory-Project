@@ -4,15 +4,14 @@
 
 | Name | role |
 | --- | --- |
-| 강지원 | Front - End, Back - End, DB |
-| 김동욱 | IoT, DB, Circuit Diagram |
+| 김동욱 | Front - End, Back - End <br> IoT, DB, Circuit Diagram |
 <br>
 
 ## Languages && Tools
 
 | Role | Language | Tool |
 | --- | --- | --- |
-| Front - End | HTML, CSS, JS | VSCode |
+| Front - End | HTML | VSCode |
 | Back - ENd | Flask | VSCode |
 | Database | Firebase | Firebase |
 | IoT | WeMos D1 R1 | Arduino IDE |
