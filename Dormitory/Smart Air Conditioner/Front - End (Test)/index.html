@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>에어컨 제어 시스템</title>
+    <link rel="stylesheet" type="text/css" href="styles.css">
+</head>
+
+<body>
+    <h1>모드</h1>
+    <form method="post" action="/save_to_firebase_0">
+        <button id="Cooling" type="submit">냉방</button>
+    </form>
+
+    <form method="post" action="/save_to_firebase_1">
+        <button id="Heating" type="submit">난방</button>
+    </form>
+
+    <form method="post" action="/save_to_firebase_2">
+        <button id="Dehumidification" type="submit">제습</button>
+    </form>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
