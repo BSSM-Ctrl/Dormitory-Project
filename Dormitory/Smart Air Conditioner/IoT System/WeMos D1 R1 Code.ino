@@ -1,45 +1,54 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
-// #include <ArduinoJson.h>
-#include <Servo.h>
-#include <DHT.h>
 
-#define FIREBASE_HOST "" // Firebase 주소
-#define FIREBASE_AUTH "" // Firebase 비밀번호
+#define FIREBASE_HOST ""
+#define FIREBASE_AUTH ""
 #define WIFI_SSID "bssm_free"
 #define WIFI_PASSWORD "bssm_free"
+
 #define DHTTYPE DHT11
 #define DHTPIN_A 2
-Servo On_servo;
-Servo Mode_servo;
+
+//함수
+Servo OnServo;
+Servo ModeServo;
+int OnServoPin = D3;
+int ModeServoPin = D4;
+
 DHT DHT(DHTPIN_A, DHTTYPE);
 
-int servoPin1 = D3;
-int servoPin2 = D4;
 int Mode = 0;
 int On = 0;
+
 float Temperature, Humidity;
 
 void setup()
 {
-    Serial.begin(115200);
-    WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
-    Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
-    Firebase.setInt("Mode", 0);
-    Firebase.setFloat("MaxTemperature", 0);
-    Firebase.setFloat("MinTemperature", 0);
-    Firebase.setFloat("MaxHumidity", 0);
-    Firebase.setFloat("MinHumidity", 0);
-    Firebase.setFloat("Temperature", 0);
-    Firebase.setFloat("Humidity", 0);
-    On_servo.attach(servoPin1);
-    Mode_servo.attach(servoPin2);
+  OnServo.attach(OnServoPin);
+  ModeServo.attach(ModeServoPin);
+  Serial.begin(115200);
+  WiFi.begin(WIFI_SSID, WIFI_PASSWORD);
+  Serial.print("connecting");
+  while (WiFi.status() != WL_CONNECTED) {
+    Serial.print(".");
+    delay(500);
+  }
+  Serial.println();
+  Serial.print("connected: ");
+  Serial.println(WiFi.localIP());
+  Firebase.begin(FIREBASE_HOST, FIREBASE_AUTH);
+  Firebase.setInt("Mode", 0);
+  Firebase.setFloat("T-Max", 0);
+  Firebase.setFloat("T-Min", 0);
+  Firebase.setFloat("H-Max", 0);
+  Firebase.setFloat("H-Min", 0);
+  Firebase.setFloat("Temperature", 0);
+  Firebase.setFloat("Humidity", 0);
 }
 
 void loop()
 {
-
-    float Temperature = DHT.readTemperature();
+  float Temperature = DHT.readTemperature();
     float Humidity = DHT.readHumidity();
     Firebase.setFloat("Temperature", Temperature);
     Firebase.setFloat("Humidity", Humidity);
