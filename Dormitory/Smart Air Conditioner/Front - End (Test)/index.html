@@ -5,24 +5,86 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>에어컨 제어 시스템</title>
-    <link rel="stylesheet" type="text/css" href="styles.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <h1>모드</h1>
-    <form method="post" action="/save_to_firebase_0">
-        <button id="Cooling" type="submit">냉방</button>
-    </form>
+    <header>
+        <div id="Ctrl">Ctrl</div>
+        <div id="Line"></div>
+    </header>
+    <article>
+        <div id="Now--cdt">
+            <div class="Title">
+                <div class="Title--text">현재상태</div>
+                <button id="Hide--button1">
+                    <img src="./images/icon.svg" />
+                </button>
+            </div>
+            <div id="Now--bar">
+                <div class="Now--section">
+                    <div class="text">온도 : </div>
+                    <div id="Temperatures">0</div>
+                </div>
+                <div class="Now--section">
+                    <div class="text">습도 : </div>
+                    <div id="Humidities">0</div>
+                </div>
+                <div class="Now--section">
+                    <div class="text">모드 : </div>
+                    <div id="Modes">냉방</div>
+                </div>
+            </div>
+        </div>
+        <div id="Mode">
+            <div class="Title">
+                <div class="Title--text">모드</div>
+                <button id="Hide--button2">
+                    <img src="./images/icon.svg" />
+                </button>
+            </div>
+            <div id="Mode--button">
+                <button id="Cooling" type="submit" value="0">냉방</button>
+                <button id="Heating" type="submit" value="1">난방</button>
+                <button id="Dehumidification" type="submit" value="2">제습</button>
+            </div>
+        </div>
+        <div id="Desire--Humidity">
+            <div class="Title">
+                <div class="Title--text">희망 온도 & 습도</div>
+                <button id="Hide--button3">
+                    <img src="./images/icon.svg" />
+                </button>
+            </div>
+            <div id="Desire--main">
+                <div class="Desire">
+                    <div id="Desire--temperature">희망 온도</div>
+                    <div class="Select">
+                        <div class="Select--bar">
+                            <button id="Minus--tem">-</button>
+                            <div id="Temperature">25°C</div>
+                            <button id="Plus--tem">+</button>
+                        </div>
+                        <input id="Input--tem" placeholder="온도" type="number" onchange="wantT()" />
+                    </div>
+                </div>
+                <div class="Desire">
+                    <div id="Desire--temperature">희망 습도</div>
+                    <div class="Select">
+                        <div class="Select--bar">
+                            <button id="Minus--hum">-</button>
+                            <div id="Humidity">50%</div>
+                            <button id="Plus--hum">+</button>
+                        </div>
+                        <input id="Input--hum" placeholder="습도" type="number" onchange="wantH()" />
+                    </div>
+                </div>
+            </div>
+        </div>
+        </div>
+    </article>
 
-    <form method="post" action="/save_to_firebase_1">
-        <button id="Heating" type="submit">난방</button>
-    </form>
-
-    <form method="post" action="/save_to_firebase_2">
-        <button id="Dehumidification" type="submit">제습</button>
-    </form>
-
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 
 </html>
