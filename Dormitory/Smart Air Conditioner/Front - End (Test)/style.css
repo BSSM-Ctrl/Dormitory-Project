@@ -1,10 +1,246 @@
+@import url('https://fonts.googleapis.com/css2?family=Nanum+Pen+Script&family=Noto+Sans+KR:wght@500&display=swap');
+
 body {
-    font-family: Arial, sans-serif;
-    text-align: center;
+    font-family: 'Nanum Pen Script', cursive;
+    font-family: 'Noto Sans KR', sans-serif;
 }
 
-button {
-    padding: 10px 20px;
-    font-size: 16px;
-    margin: 10px;
+header {
+    max-width: 100%;
+}
+
+#Ctrl {
+    font-size: 40px;
+    padding: 0.5% 0 0.5% 5%;
+    color: #955ACD;
+}
+
+#Line {
+    border-bottom: 2px solid #d9d9d9;
+}
+
+article {
+    display: flex;
+    flex-direction: column;
+    padding: 3% 20% 0 20%;
+}
+
+
+/*--현재상태--*/
+#Now--cdt {
+    display: flex;
+    flex-direction: column;
+}
+
+.Title {
+    display: flex;
+}
+
+.Title--text {
+    color: #955ACD;
+    font-size: 26px;
+}
+
+img {
+    width: 40px;
+    height: 40px;
+}
+
+#Hide--button1:hover {
+    cursor: pointer;
+}
+
+#Hide--button2:hover {
+    cursor: pointer;
+}
+
+#Hide--button3:hover {
+    cursor: pointer;
+}
+
+#Now--bar {
+    display: flex;
+    justify-content: center;
+    padding: 2% 18% 0 18%;
+    gap: 20%;
+}
+
+.Now--section {
+    display: flex;
+    font-size: 23px;
+}
+
+.text {
+    color: #955ACD;
+}
+
+#Temperatures {
+    margin-left: 10px;
+}
+
+#Humidities {
+    margin-left: 10px;
+}
+
+#Modes {
+    margin-left: 10px;
+}
+
+/*--모드--*/
+#Mode {
+    padding: 7% 0 0 0;
+}
+
+#Mode--button {
+    display: flex;
+    gap: 10%;
+    justify-content: center;
+    padding: 2% 0 0 0;
+}
+
+#Mode--button button {
+    background-color: white;
+    color: #955ACD;
+    border: 2px solid #955ACD;
+    cursor: pointer;
+    padding: 8px 37px;
+    transition: all 0.5s;
+    border-radius: 10px;
+    font-size: 18px;
+}
+
+#Mode--button button:hover {
+    background: #955ACD;
+    color: white;
+    transition: all 0.5s;
+}
+
+
+/*--희망온도 & 습도--*/
+#Desire--Humidity {
+    padding: 7% 0 0 0;
+    justify-content: space-between;
+}
+
+.Desire {
+    padding: 3% 0 0 0;
+    width: 100%;
+}
+
+#Desire--main {
+    display: flex;
+}
+
+#Desire--temperature {
+    font-size: 21px;
+    display: flex;
+}
+
+.Select {
+    display: flex;
+    padding: 2.5% 0 0 0;
+    gap: 1%;
+}
+
+.Select--bar {
+    display: flex;
+    text-align: center;
+    justify-content: center;
+    width: 80%;
+    padding: 1% 0 1% 0;
+    background-color: #955ACD;
+    border-radius: 20px;
+}
+
+.Select--bar button#Minus--tem {
+    width: 30px;
+    background-color: #955ACD;
+    border: none;
+    outline: none;
+    color: white;
+    margin: 0 auto 0 10px;
+    font-size: 18px;
+}
+
+.Select--bar button#Minus--tem:hover {
+    cursor: pointer;
+}
+
+.Select--bar button#Plus--tem {
+    width: 30px;
+    background-color: #955ACD;
+    outline: none;
+    border: none;
+    color: white;
+    margin: 0 10px 0 auto;
+    font-size: 18px;
+}
+
+.Select--bar button#Plus--tem:hover {
+    cursor: pointer;
+}
+
+.Select--bar button#Minus--hum {
+    width: 30px;
+    background-color: #955ACD;
+    border: none;
+    outline: none;
+    color: white;
+    margin: 0 auto 0 10px;
+    font-size: 18px;
+}
+
+.Select--bar button#Minus--hum:hover {
+    cursor: pointer;
+}
+
+.Select--bar button#Plus--hum {
+    width: 30px;
+    background-color: #955ACD;
+    outline: none;
+    border: none;
+    color: white;
+    margin: 0 10px 0 auto;
+    font-size: 18px;
+}
+
+.Select--bar button#Plus--hum:hover {
+    cursor: pointer;
+}
+
+#Temperature {
+    color: white;
+    font-size: 19px;
+}
+
+#Humidity {
+    color: white;
+    font-size: 19px;
+}
+
+input {
+    width: 10%;
+    font-size: 15px;
+    border-radius: 12px;
+    outline: none;
+    border: none;
+    background-color: #d9d9d9;
+}
+
+#Hide--button1 {
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+#Hide--button2 {
+    border: none;
+    outline: none;
+    background-color: white;
+}
+
+#Hide--button3 {
+    border: none;
+    outline: none;
+    background-color: white;
 }
