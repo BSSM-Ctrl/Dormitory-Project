@@ -6,11 +6,18 @@ require("dotenv").config();
 
 const app = express();
 
+const TemperatureRouter = require("./routes/temperature");
+const HumidityRouter = require("./routes/humidity");
+
+
 app.set("port", process.env.PORT || 3000);
 
 app.use(morgan("dev"));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
+app.use("/temperature", TemperatureRouter);
+app.use("/humidity", HumidityRouter);
 
 admin.initializeApp({
   credential: admin.credential.cert(serviceAccount),
