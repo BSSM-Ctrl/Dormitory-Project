@@ -12,7 +12,7 @@ module.exports = (db) => {
       .child(select)
       .set(newVal)
       .then(() => {
-        res.send("updated successfully.");
+        res.send(`${select} updated successfully.`);
       })
       .catch((error) => {
         res.status(500).send(error);

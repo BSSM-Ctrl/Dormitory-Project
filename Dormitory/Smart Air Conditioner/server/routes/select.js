@@ -11,8 +11,10 @@ module.exports = (db) => {
       .child(select)
       .once("value")
       .then((snapshot) => {
-        const val = snapshot.val();
-        res.send(`Current ${select}: ${val}`);
+        const val = {
+          value: snapshot.val()
+        };
+        res.send(val);
       })
       .catch((error) => {
         res.status(500).send(error);

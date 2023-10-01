@@ -1,7 +1,7 @@
 const express = require("express");
 const morgan = require("morgan");
 const admin = require('firebase-admin');
-const serviceAccount = require('../server/smart-air-conditioner-63ffc-firebase-adminsdk-y0xm9-668edfefba.json');
+const serviceAccount = require('./smart-air-conditioner-63ffc-firebase-adminsdk-y0xm9-668edfefba.json');
 
 const app = express();
 
