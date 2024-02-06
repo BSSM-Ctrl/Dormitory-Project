@@ -1,10 +1,10 @@
 #include <ESP8266WiFi.h>
 #include <FirebaseArduino.h>
 #include <Servo.h>
-#define FIREBASE_HOST "iot-dormitory-door-default-rtdb.firebaseio.com"
-#define FIREBASE_AUTH "wMUmeverLoUTy9QRfZIMVvlEwPLgYjRHnMaiHGTv"
-#define WIFI_SSID "bssm_free"
-#define WIFI_PASSWORD "bssm_free"
+
+// Secure file
+#include "secure.h"
+
 Servo servo;
 int servoPin = D3;
 void setup(){

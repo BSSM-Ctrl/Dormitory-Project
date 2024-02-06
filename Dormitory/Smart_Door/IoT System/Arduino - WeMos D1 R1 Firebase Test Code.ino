@@ -2,10 +2,9 @@
 #include <Firebase_ESP_Client.h>
 #include <addons/RTDBHelper.h>
 
-#define WIFI_SSID "bssm_free"
-#define WIFI_PASSWORD "bssm_free"
-#define DATABASE_URL "iot-dormitory-door-default-rtdb.firebaseio.com"
-#define DATABASE_SECRET "wMUmeverLoUTy9QRfZIMVvlEwPLgYjRHnMaiHGTv"
+// Arduino Secure file
+#include "secure.h"
+
 FirebaseData fbdo;
 FirebaseAuth auth;
 FirebaseConfig config;
